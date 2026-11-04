@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b35">
+  <meta name="description" content="A clean, responsive live weather dashboard with hourly and five-day forecasts.">
+  <title>SkyCast — Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-weather="clear">
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <main class="app-shell">
+    <header class="navbar">
+      <a class="brand" href="#" aria-label="SkyCast home"><span class="brand-icon">☼</span>sky<span>cast</span></a>
+      <div class="nav-right">
+        <span class="live"><i></i> LIVE WEATHER</span>
+        <button id="unitToggle" class="unit" type="button" aria-label="Switch temperature unit">°C <small>/ °F</small></button>
+      </div>
+    </header>
+
+    <section class="intro">
+      <div>
+        <p class="eyebrow">YOUR PERSONAL WEATHER STATION</p>
+        <h1>Weather, at a <span>glance.</span></h1>
+        <p class="muted">Real-time conditions and forecasts for wherever you are.</p>
+      </div>
+      <div class="date-chip" id="todayDate">—</div>
+    </section>
+
+    <section class="search-panel" aria-label="Weather search">
+      <div class="search-box">
+        <span aria-hidden="true">⌕</span>
+        <input id="cityInput" type="search" placeholder="Search city, e.g. Delhi, London, Tokyo..." autocomplete="off" aria-label="Enter city name">
+        <button id="clearSearch" type="button" aria-label="Clear search">×</button>
+      </div>
+      <button id="searchBtn" class="primary" type="button">Search <span>→</span></button>
+      <button id="locationBtn" class="secondary" type="button">◎ My location</button>
+    </section>
+
+    <div id="status" class="status" role="status" aria-live="polite">Search for a city to see its weather.</div>
+
+    <section id="weatherContent" class="hidden">
+      <div class="dashboard-grid">
+        <article class="glass current-card">
+          <div class="card-head">
+            <div>
+              <p class="eyebrow">CURRENT WEATHER</p>
+              <h2 id="cityName">—</h2>
+              <p id="localDate" class="muted">—</p>
+            </div>
+            <button id="favoriteBtn" class="favorite" type="button" title="Add to favourites" aria-label="Add city to favourites">☆</button>
+          </div>
+          <div class="current-main">
+            <div>
+              <div class="temperature"><span id="temperature">—</span><sup id="degree">°C</sup></div>
+              <p id="condition" class="condition">—</p>
+              <p id="feelsLike" class="muted">Feels like —</p>
+            </div>
+            <img id="weatherIcon" class="weather-icon" alt="Weather condition">
+          </div>
+          <div class="high-low">↑ <b id="highTemp">—</b> High <span>↓ <b id="lowTemp">—</b> Low</span></div>
+          <div class="local-time">Local time <strong id="localTime">—</strong></div>
+        </article>
+
+        <article class="glass details-card">
+          <div class="section-head">
+            <div><p class="eyebrow">WEATHER DETAILS</p><h3>Today's highlights</h3></div>
+            <span class="sparkle">✦</span>
+          </div>
+          <div class="metrics">
+            <div class="metric"><label>💧 Humidity</label><strong id="humidity">—</strong><small>Relative humidity</small></div>
+            <div class="metric"><label>➤ Wind speed</label><strong id="wind">—</strong><small id="windDirection">—</small></div>
+            <div class="metric"><label>◉ Pressure</label><strong id="pressure">—</strong><small>Atmospheric pressure</small></div>
+            <div class="metric"><label>◉ Visibility</label><strong id="visibility">—</strong><small>Viewing distance</small></div>
+            <div class="metric"><label>🌅 Sunrise</label><strong id="sunrise">—</strong><small>Local time</small></div>
+            <div class="metric"><label>🌇 Sunset</label><strong id="sunset">—</strong><small>Local time</small></div>
+          </div>
+        </article>
+      </div>
+
+      <article class="glass forecast">
+        <div class="section-head">
+          <div><p class="eyebrow">NEXT 24 HOURS</p><h3>Hourly forecast</h3></div>
+          <small>3-hour intervals</small>
+        </div>
+        <div id="hourlyForecast" class="hourly"></div>
+      </article>
+
+      <article class="glass forecast">
+        <div class="section-head">
+          <div><p class="eyebrow">PLAN AHEAD</p><h3>5-day forecast</h3></div>
+          <small>Coming days</small>
+        </div>
+        <div id="dailyForecast"></div>
+      </article>
+
+      <div class="bottom-grid">
+        <article class="glass places">
+          <p class="eyebrow">YOUR SHORTLIST</p><h3>Recent searches</h3>
+          <div id="recentCities" class="chips"></div>
+        </article>
+        <article class="glass places">
+          <p class="eyebrow">QUICK ACCESS</p><h3>Favourite cities</h3>
+          <div id="favoriteCities" class="chips"></div>
+        </article>
+      </div>
+    </section>
+
+    <footer>Made with <span>♥</span> for curious weather watchers · Powered by OpenWeather</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
